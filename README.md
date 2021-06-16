@@ -36,7 +36,7 @@ console.log('result:', result);
 const defaultPollOptions = {
   delay: 100, // delay time to start loop query
   interval: 1000, // execute interval
-  timeout: 10 * 1000, // time after long time
+  timeout: 10 * 1000, // time after a long time and quit loop
 };
 ```
 
