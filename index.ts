@@ -22,7 +22,7 @@ export default function poll<T extends (...args: any[]) => any>(
   fn: T,
   opts: Options & {
     onFulfilled: (result: Unpacked<ReturnType<T>>) => boolean;
-    onReject: (result: Unpacked<ReturnType<T>>) => boolean;
+    onReject?: (result: Unpacked<ReturnType<T>>) => boolean;
   },
   ...args: Parameters<T>
 ) {
@@ -40,24 +40,24 @@ export default function poll<T extends (...args: any[]) => any>(
           if (opts.onFulfilled(result)) {
             return resolve(result);
           }
-          if (opts.onReject(result)) {
+          if (opts.onReject && opts.onReject(result)) {
             return reject(result);
           }
-        } catch (e) {
-          reject(e);
+        } catch (err) {
+          reject(err);
         }
       }, interval);
     }, delay);
   })
     .then((ret) => {
-      clearInterval(looper);
-      clearTimeout(timer);
       return ret;
     })
     .catch((err) => {
+      throw err;
+    })
+    .finally(() => {
       clearInterval(looper);
       clearTimeout(timer);
-      throw err;
     });
 }
 
