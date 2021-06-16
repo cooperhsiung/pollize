@@ -1,6 +1,6 @@
 {
   "name": "pollize",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "poll until response",
   "main": "index.js",
   "scripts": {

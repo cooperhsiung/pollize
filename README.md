@@ -3,7 +3,7 @@
 [![NPM Version][npm-image]][npm-url]
 [![Node Version][node-image]][node-url]
 
-make resource pooling
+poll until response
 
 ## Installation
 
@@ -13,6 +13,22 @@ npm i pollize -S
 
 ## Usage
 
+```typescript
+import poll from 'pollize';
+
+async function toCheck(i: number): Promise<number> {
+  await sleep(200);
+  const val = Math.random();
+  console.log('got:', val, 'at', new Date());
+  return i * val;
+}
+
+const result = await poll(toCheck,{
+  onFulfilled: (result) => result > 8, // polling until return more than 8
+  onReject: (result) => result < 0.5, // throw error once result less than 0.5
+}, 10);
+console.log('result:', result);
+```
 
 ## Examples
 
