@@ -30,6 +30,16 @@ const result = await poll(toCheck,{
 console.log('result:', result);
 ```
 
+## Options
+
+```typescript
+const defaultPollOptions = {
+  delay: 100, // delay time to start loop query
+  interval: 1000, // execute interval
+  timeout: 10 * 1000, // time after long time
+};
+```
+
 ## Examples
 
 examples are listed at [examples](https://github.com/cooperhsiung/pollize/tree/master/examples)
