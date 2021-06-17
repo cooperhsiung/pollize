@@ -15,6 +15,7 @@ npm i pollize -S
 
 ```typescript
 import poll from 'pollize';
+// for commonjs -> const pool = require('pollize').default
 
 async function toCheck(i: number): Promise<number> {
   await sleep(200);
